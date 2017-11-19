@@ -30,10 +30,14 @@ while True:
     methaneLevel2 = int(line[4])
 
     names = ["peopleSinceLastClean","photoLevel", "methaneLevel1","methaneLevel2"]
+    datasets = [peopleSinceLastClean,photoLevel,methaneLevel1,methaneLevel2]
+
+    dataDict = {}
+    for name in names:
+        dataDict[name] = datasets[names.index(name)]
+    
     r = requests.post("http://www.dweet.io/dweet/for/lesDragooner1",
-                      data={"People_since_last_clean": peopleSinceLastClean,
-                            "Methane_level": methaneLevel,
-                            "Button Pushed": buttonPushed})
+                      data=dataDict)
 
     print(line)
     output_file.write(line)
